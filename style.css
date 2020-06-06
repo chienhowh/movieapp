@@ -24,6 +24,7 @@
     width: 100%;
 }
 
+
 .section img{
     transition: 0.5s;
 }
@@ -32,11 +33,43 @@ img:hover{
     transform: scale(1.2);
 }
 
+
 .content{
     border: 2px solid red;
     display: none;
 }
 
 .content.content-display{
-    display: block;   
+    display: block;
+    position: fixed;
+    width: 500px;
+    height: 400px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0; 
+    margin: auto;
+    background-color: aquamarine;
+    z-index: 3;
+}
+
+.content.content-display p{
+    border: red 2px solid;
+    padding: 5px;
+    background-color: red;
+    position: absolute;
+    right: 0;
+    margin-top: 0;
+
+}
+
+
+.content div{
+    /* display: flex;
+    justify-content: space-around;
+    align-items: center; */
+}
+
+[class^='movie-']{
+    padding-bottom: 20px;
 }
