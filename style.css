@@ -1,0 +1,42 @@
+.form-group{
+    margin-bottom: ;
+}
+#inputValue{
+    width: 760px;
+}
+#search {
+    font-weight: 400;
+    text-align: center;
+    cursor: pointer;
+    line-height: 1.5;
+    border-radius: 0.2;
+    background-color: #0000ee;
+    color: #ffffff;
+    outline: none;
+}
+
+.movie-display{
+    margin-top: 40px;
+}
+.section{
+    display: flex;
+    overflow-x: auto;
+    width: 100%;
+}
+
+.section img{
+    transition: 0.5s;
+}
+
+img:hover{
+    transform: scale(1.2);
+}
+
+.content{
+    border: 2px solid red;
+    display: none;
+}
+
+.content.content-display{
+    display: block;   
+}
