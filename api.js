@@ -10,13 +10,14 @@ function generateUrl(path){
 function movieDisplay(movies){
     const moviebox = document.createElement("div");
     moviebox.classList.add("movie");
-    const movirLists = `
-        <section class="section">${movies.map(
+    const movieLists = `${movies.map(
         (movie) => `<img src="${image_url + movie.poster_path}" data-movie-id="${movie.id}"</img>` 
-    )}</section>
-    <div class="content"><p id="content-close">X</p></div>
+    )}`.replace(/,/g,"");
+    const movieSection = `
+        <section class="section ">${movieLists}</section>
+    <div class="content container "><p id="content-close">X</p></div>
     `;
-    moviebox.innerHTML = movirLists;
+    moviebox.innerHTML = movieSection;
     return moviebox;
 }
 
@@ -24,9 +25,26 @@ function movieDisplay(movies){
 function generateIframe(video){
     const iframe = document.createElement("iframe");
     iframe.src = `https://www.youtube.com/embed/${video}`;
-    // iframe.width = 360;
-    // iframe.height = 240;
+    iframe.width = 360;
+    iframe.height = 240;
      iframe.allowFullscreen = true;
     return iframe;
 }
+
+function generateDetail(data, content){
+    const detailContainer = document.createElement("div")
+    const plotContainer = document.createElement('div')
+    detailContainer.className = 'detail';
+    plotContainer.className = 'plot';
+    detailContainer.innerHTML =`<ul class="list-group>
+        <li class="list-group-item"><strong>${data.original_title}</strong></li>
+        <li class="list-group-item"><strong>Date:</strong>${data.release_date}</li>
+        <li class="list-group-item"><strong>Runtime:</strong>${data.runtime}mins</li>
+        <li class="list-group-item"><strong>Date:</strong>${data.release_date}</li>
+        `;
+    plotContainer.innerHTML = `<h1>Plot</h1><p>${data.overview}</p>`
+    console.log(data);
+    content.append(detailContainer, plotContainer)
+}
+
 

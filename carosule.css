@@ -1,3 +1,6 @@
+.form-group{
+    margin-bottom: ;
+}
 #inputValue{
     width: 760px;
 }
@@ -21,6 +24,7 @@
     width: 100%;
 }
 
+
 .section img{
     transition: 0.5s;
 }
@@ -37,54 +41,35 @@ img:hover{
 
 .content.content-display{
     display: block;
+    display: flex;
     position: fixed;
-    /* width: 500px; */
-    height: 500px;
+    width: 500px;
+    height: 400px;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0; 
     margin: auto;
-    background-color: #aaa;
+    background-color: aquamarine;
     z-index: 3;
-    /* display: flex; */
 }
 
-.content.content-display .trailer{
-    display: inline-block;  
-    /* border: 2px yellow solid; */
-    height: 300px;
-    width: 400px;  
-}
-.content.content-display .trailer iframe{
-   
-}
-.content.content-display .detail{
-    display: inline-block;
-    position: absolute;
-    right: 50px;
-    padding: 20px;
-    /* border: 2px yellow solid; */
-}
-.content.content-display .plot{
-    margin-top: 10px;
-    color: black;
-    /* border: brown 2px solid; */
-}
 .content.content-display p{
-    padding: 5px;
-    font-size: larger;
-}
-#content-close{
     border: red 2px solid;
     padding: 5px;
     background-color: red;
     position: absolute;
     right: 0;
     margin-top: 0;
+
 }
 
 
+.content div{
+    /* display: flex;
+    justify-content: space-around;
+    align-items: center; */
+}
 
 [class^='movie-']{
     padding-bottom: 20px;

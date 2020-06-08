@@ -6,7 +6,7 @@ const image_url = "https://image.tmdb.org/t/p/w500";
 const movieBoard = document.querySelector(".movie-display");
 const movieUpcoming = document.querySelector(".movie-upcoming");
 const movieNowPlaying = document.querySelector(".movie-nowplaying");
-const movieTopRated = document.querySelector(".movie-top-rated")
+const movieTopRated = document.querySelector(".carousel-inner")
 
 //抓圖片
 function searchMoviesData(url, container){
@@ -48,7 +48,6 @@ function getTrailers(data, content){
     const key = trailers[0].key;
      // const length = trailers.length > 3 ? 3 : trailers.length;
      const trailersContanier = document.createElement("div");
-     trailersContanier.className = 'trailer'
      trailersContanier.append(generateIframe(key));
      // for(let i = 0; i < length; i++){
      //     const key = trailers[i].key;
@@ -89,9 +88,7 @@ function clickDelegation(target){
     }
     if(target.id === "content-close"){
         const content = target.parentElement;
-        console.log(content) 
-        content.classList.remove("content-display");
-        console.log('hi')
+        content.classList.remove("content-display")
     }
 }
 movieBoard.addEventListener("click", function(event){
@@ -198,8 +195,59 @@ function getNowPlaying(){
     const url = generateUrl(path);
     getMoviesData(url, movieNowPlaying);
 }
-getMoviesData(url, movieBoard)
-getUpcoming();
-getTopRated();
-getNowPlaying();
 
+
+
+//產生對應網址
+function generateUrl(path){
+    const url = `https://api.themoviedb.org/3${path}?api_key=bc0a486e34f46f2e1df814d9d7d35008`
+    return url;
+}
+
+//分開結果
+function movieDisplay(movies){
+    const moviebox = document.createElement("div");
+    moviebox.classList.add("movie");
+    const movieLists = `${movies.map(
+        (movie) => `<div class="carousel-item "><img src="${image_url + movie.poster_path}" class="d-block w-100" data-movie-id="${movie.id}"</img></div>` 
+    )}`.replace(/,/g,"");
+    const movieSection = `
+        ${movieLists}
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    <div class="content"><p id="content-close">X</p></div>
+    `;
+    moviebox.innerHTML = movieSection;
+    return moviebox;
+}
+
+//產生影片框
+function generateIframe(video){
+    const iframe = document.createElement("iframe");
+    iframe.src = `https://www.youtube.com/embed/${video}`;
+    // iframe.width = 360;
+    // iframe.height = 240;
+     iframe.allowFullscreen = true;
+    return iframe;
+}
+
+function generateDetail(data, content){
+    const detailContainer = document.createElement("div")
+    detailContainer.innerHTML =`<h1>${data.original_title}</h1>
+        <h1>Date</h1>:<p>${data.release_date}<p>
+        <h1>Runtime</h1>:<p>${data.runtime}mins<p>
+        <h1>Plot</h1>:<p>${data.overview}<p>    
+        `
+    console.log(data);
+    content.append(detailContainer)
+}
+// getMoviesData(url, movieBoard)
+// getUpcoming();
+getTopRated();
+// getNowPlaying();
